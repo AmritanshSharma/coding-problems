@@ -1,0 +1,129 @@
+%pip install simpy
+import simpy
+ print(211456)
+ def car(env, name, bcs, driving_time, charge_duration):
+     # Simulate driving to the BCS
+     yield env.timeout(driving_time)
+
+     # Request one of its charging spots
+     print('%s arriving at %d' % (name, env.now))
+     with bcs.request() as req:
+         yield req
+
+         # Charge the battery
+         print('%s starting to charge at %s' % (name, env.now))
+         yield env.timeout(charge_duration)
+         print('%s leaving the bcs at %s' % (name, env.now))
+ import simpy
+ env = simpy.Environment()
+ bcs = simpy.Resource(env, capacity=2)
+ for i in range(4):
+     env.process(car(env, 'Car %d' % i, bcs, i*2, 5))
+     env.run()
+     
+     #task
+print(211456)
+def car(env, name, bcs, driving_time, charge_duration):
+  # Simulate driving to the BCS
+  yield env.timeout(driving_time)
+  # Request one of its charging spots
+  print('%s arriving at %d' % (name, env.now))
+  with bcs.request() as req:
+    yield req
+
+    # Charge the battery
+    print('%s starting to charge at %s' % (name, env.now))
+    if(name[-1] == '2'):
+      charge_duration = 9
+    yield env.timeout(charge_duration)
+    print('%s leaving the bcs at %s' % (name, env.now))
+
+
+env = simpy.Environment()
+bcs = simpy.Resource(env, capacity=2)
+for i in range(4):
+  env.process(car(env, 'Car %d' % i, bcs, i*2, 5))
+
+env.run()
+
+
+#Task
+print(211456)
+def car(env, name, bcs, driving_time, charge_duration):
+  # Simulate driving to the BCS
+  yield env.timeout(driving_time)
+  # Request one of its charging spots
+  arv = env.now
+  print('%s arriving at %d' % (name, env.now))
+  with bcs.request() as req:
+    yield req
+    # Charge the battery
+    st = env.now
+    if( name[-1] == '2' and st - arv > 5):
+      print('%s leaving the bcs at %d' % (name, arv))
+    else:
+      print('%s starting to charge at %s' % (name, env.now))
+      yield env.timeout(charge_duration)
+      print('%s leaving the bcs at %s' % (name, env.now))
+env = simpy.Environment()
+bcs = simpy.Resource(env, capacity=1)
+for i in range(4):
+  env.process(car(env, 'Car %d' % i, bcs, i*2, 5))
+  
+  
+  
+  #Task
+print(211456)
+global st
+arv = 0
+st = 0
+def car(env, name, bcs, driving_time, charge_duration):
+  # Simulate driving to the BCS
+  yield env.timeout(driving_time)
+  # Request one of its charging spots
+  arv = env.now
+  print('%s arriving at %d' % (name, env.now))
+  with bcs.request() as req:
+    yield req
+    # Charge the battery
+    st = env.now
+    if( name[-1] == '2' and st - arv > 7):
+      print('%s leaving the bcs at %d' % (name, arv))
+      print(st)
+    else:
+      print('%s starting to charge at %s' % (name, env.now))
+      yield env.timeout(charge_duration)
+      print('%s leaving the bcs at %s' % (name, env.now))
+env = simpy.Environment()
+bcs = simpy.Resource(env, capacity=1)
+for i in range(4):
+  env.process(car(env, 'Car %d' % i, bcs, i*2, 5))
+env.run()
+
+#Task
+print(211456)
+global st
+arv = 0
+st = 0
+def car(env, name, bcs, driving_time, charge_duration):
+  # Simulate driving to the BCS
+  yield env.timeout(driving_time)
+  # Request one of its charging spots
+  arv = env.now
+  print('%s arriving at %d' % (name, env.now))
+  with bcs.request() as req:
+    yield req
+    # Charge the battery
+    st = env.now
+    if( name[-1] == '2' and st - arv > 5):
+      print('%s leaving the bcs at %d' % (name, arv))
+      print(st)
+    else:
+      print('%s starting to charge at %s' % (name, env.now))
+      yield env.timeout(charge_duration)
+      print('%s leaving the bcs at %s' % (name, env.now))
+env = simpy.Environment()
+bcs = simpy.Resource(env, capacity=1)
+for i in range(4):
+  env.process(car(env, 'Car %d' % i, bcs, i*2, 5))
+env.run()
